@@ -1,0 +1,396 @@
+// =============================
+// PALETA
+// =============================
+$azul-oscuro: #0d1b3d;
+$azul-medio: #0a2a66;
+$blanco: #ffffff;
+
+// =============================
+// CONTENEDOR GENERAL
+// =============================
+.home-wrapper {
+  min-height: 100vh;
+  background: #f4f7fb;
+  padding: 25px;
+  font-family: "Segoe UI", sans-serif;
+}
+
+// =============================
+// HERO
+// =============================
+.hero {
+  margin-bottom: 25px;
+}
+
+.hero-text h1 {
+  font-size: 32px;
+  font-weight: 700;
+  color: $azul-oscuro;
+  margin-bottom: 8px;
+}
+
+.hero-text p {
+  color: #64748b;
+  font-size: 15px;
+}
+
+// =============================
+// DASHBOARD PRINCIPAL
+// =============================
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 25px;
+  align-items: start;
+}
+.swal2-container {
+  z-index: 999999 !important;
+}
+// =============================
+// CALENDARIO
+// =============================
+.calendar-card {
+  background: white;
+  border-radius: 20px;
+  padding: 25px;
+
+  box-shadow: 0 4px 20px rgba(0,0,0,.08);
+
+  min-height: 850px;
+}
+
+.calendar-card h2 {
+  margin-bottom: 20px;
+  color: $azul-oscuro;
+}
+
+#calendar {
+  height: 760px;
+}
+
+// =============================
+// PANEL DERECHO
+// =============================
+.side-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+// =============================
+// TARJETAS RESUMEN
+// =============================
+.mini-card {
+  background: white;
+
+  border-radius: 18px;
+
+  padding: 20px;
+
+  box-shadow: 0 4px 20px rgba(0,0,0,.08);
+
+  cursor: pointer;
+
+  transition: .2s;
+}
+
+.mini-card:hover {
+  transform: translateY(-3px);
+}
+
+.mini-card span {
+  font-size: 14px;
+  color: #64748b;
+}
+
+.mini-card h2 {
+  margin-top: 10px;
+  font-size: 42px;
+  font-weight: 700;
+}
+
+.proceso {
+  border-left: 6px solid #fbbf24;
+}
+
+.finalizado {
+  border-left: 6px solid #64748b;
+}
+
+// =============================
+// NOTIFICACIONES
+// =============================
+.notificaciones-card {
+  background: white;
+
+  border-radius: 18px;
+
+  padding: 20px;
+
+  box-shadow: 0 4px 20px rgba(0,0,0,.08);
+
+  max-height: 550px;
+
+  overflow-y: auto;
+}
+
+.notificaciones-card h3 {
+  margin-bottom: 15px;
+  color: $azul-oscuro;
+}
+
+.notificacion-item {
+  padding: 14px;
+
+  border-bottom: 1px solid #e5e7eb;
+
+  transition: .2s;
+
+  cursor: pointer;
+}
+
+.notificacion-item:last-child {
+  border-bottom: none;
+}
+
+.notificacion-item:hover {
+  background: #f8fafc;
+}
+
+.notificacion-item strong {
+  display: block;
+  margin-bottom: 5px;
+  color: #0f172a;
+}
+
+.notificacion-item p {
+  color: #64748b;
+  font-size: 13px;
+}
+
+// =============================
+// FECHAS PRÓXIMAS
+// =============================
+.fechas-container {
+  margin-top: 30px;
+}
+
+.fechas-container h3 {
+  margin-bottom: 15px;
+  color: $azul-oscuro;
+}
+
+.fecha-item {
+  background: white;
+
+  padding: 18px;
+
+  border-radius: 14px;
+
+  margin-bottom: 12px;
+
+  box-shadow: 0 2px 10px rgba(0,0,0,.05);
+}
+
+.fecha-item p {
+  margin: 5px 0;
+}
+
+.urgente {
+  border-left: 6px solid #ef4444;
+}
+
+.advertencia {
+  border-left: 6px solid #f59e0b;
+}
+
+.urgente-badge {
+  color: #ef4444;
+  font-weight: 700;
+}
+
+.advertencia-badge {
+  color: #f59e0b;
+  font-weight: 700;
+}
+
+// =============================
+// BOTONES
+// =============================
+.btn-descripcion {
+  margin-top: 10px;
+
+  background: #2563eb;
+
+  color: white;
+
+  border: none;
+
+  border-radius: 8px;
+
+  padding: 8px 14px;
+
+  cursor: pointer;
+
+  transition: .2s;
+}
+
+.btn-descripcion:hover {
+  background: #1d4ed8;
+}
+
+// =============================
+// MODALES
+// =============================
+.overlay,
+.modal-overlay {
+  position: fixed;
+
+  inset: 0;
+
+  background: rgba(0,0,0,.55);
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  z-index: 9999;
+  
+}
+
+.popup,
+.modal-evento {
+  background: white;
+
+  border-radius: 18px;
+
+  padding: 25px;
+
+  width: 500px;
+
+  max-width: 95%;
+  
+
+  box-shadow: 0 15px 40px rgba(0,0,0,.25);
+}
+
+.close {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  cursor: pointer;
+}
+
+.contenido-modal {
+  max-height: 300px;
+  overflow-y: auto;
+  margin-top: 10px;
+}
+
+textarea,
+input,
+select {
+  width: 100%;
+
+  border: 1px solid #cbd5e1;
+
+  border-radius: 10px;
+
+  padding: 10px;
+
+  outline: none;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.btn-cancelar {
+  background: #cbd5e1;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+.btn-guardar {
+  background: #0d47a1;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+// =============================
+// RESPONSIVE
+// =============================
+@media (max-width: 1200px) {
+
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #calendar {
+    height: 650px;
+  }
+
+  .calendar-card {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .home-wrapper {
+    padding: 15px;
+  }
+
+  .hero-text h1 {
+    font-size: 24px;
+  }
+
+  #calendar {
+    height: 500px;
+  }
+}
+.modal-footer {
+
+  display: flex;
+
+  justify-content: flex-end;
+
+  margin-top: 20px;
+
+}
+
+.btn-cerrar {
+
+  background: #64748b;
+
+  color: white;
+
+  border: none;
+
+  padding: 10px 18px;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  font-weight: 600;
+
+  transition: .2s;
+
+}
+
+.btn-cerrar:hover {
+
+  background: #475569;
+
+}

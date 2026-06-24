@@ -1,0 +1,73 @@
+.container {
+  margin: 20px auto;
+  width: 90%;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+button {
+  background: #0d47a1;
+  color: white;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button.edit {
+  background: #0277bd;
+}
+
+button.delete {
+  background: #b71c1c;
+}
+
+table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+
+  th, td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  th {
+    background: #eceff1;
+  }
+}
+.search-box {
+  margin: 15px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  background: white;
+  padding: 10px 15px;
+  border-radius: 12px;
+
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+
+  width: 320px;
+
+  .material-icons {
+    color: #0a2a66;
+    font-size: 22px;
+  }
+
+  input {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 14px;
+    background: transparent;
+  }
+}

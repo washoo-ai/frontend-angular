@@ -1,0 +1,52 @@
+<div class="container">
+
+  <div class="header">
+    <h2>Clientes</h2>
+    <!-- 🔍 BUSCADOR -->
+<div class="search-box">
+  <span class="material-icons">search</span>
+
+  <input
+    type="text"
+    placeholder="Buscar cliente..."
+    [(ngModel)]="textoBusqueda"
+    (input)="filtrarClientes()"
+  />
+</div>
+    <button (click)="nuevo()">+ Nuevo Cliente</button>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Cédula</th>
+        <th>Nombres</th>
+        <th>Apellidos</th>
+        <th>Edad</th>
+        <th>Estado Civil</th>
+        <th>Telefono</th>
+        <th>Observaciones</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let c of clientesFiltrados">
+        <td>{{ c.cedula }}</td>
+        <td>{{ c.nombres }}</td>
+        <td>{{ c.apellidos }}</td>
+        <td>{{ c.edad }}</td>
+        <td>{{ c.estadoCivil }}</td>
+         <td>{{ c.telefono }}</td>
+
+         <td>{{ c.observaciones }}</td>
+
+        <td>
+          <button class="edit" (click)="editar(c.id!)">Editar</button>
+          
+          <button class="delete" (click)="eliminar(c.id!)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

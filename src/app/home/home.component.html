@@ -1,0 +1,255 @@
+<div class="home-wrapper">
+
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Bienvenido  </h1>
+      <p>Sistema profesional para la gestión de casos y clientes del bufete.</p>
+      
+    </div>
+
+
+
+  <!-- 🔥 DASHBOARD -->
+<section class="dashboard-grid">
+
+  <div class="calendar-card">
+    <h2>📅 Agenda de Casos</h2>
+    <div id="calendar"></div>
+  </div>
+
+  <div class="side-panel">
+
+    <div class="mini-card proceso"
+         (click)="irACasos('EN_PROCESO')">
+
+      <span>🟡 En Proceso</span>
+      <h2>{{ datos.enProceso }}</h2>
+
+    </div>
+
+    
+
+    <div class="notificaciones-card">
+
+      <h3>🔔 Notificaciones</h3>
+
+      <div *ngIf="notificaciones.length === 0">
+        No hay notificaciones
+      </div>
+
+      <div *ngFor="let caso of notificaciones"
+     class="notificacion-item"
+     (click)="abrirCaso(caso.id)">
+
+  <strong>{{ caso.titulo }}</strong>
+
+  <p>
+    👤 {{ caso.cliente?.nombres }}
+    {{ caso.cliente?.apellidos }}
+  </p>
+
+  <p>
+    {{ caso.mensaje }}
+  </p>
+
+  <p>
+    📅 {{ caso.fechaLimite | date:'dd/MM/yyyy' }}
+  </p>
+
+</div>
+
+    </div>
+
+  </div>
+
+</section>
+  <!-- 📅 FECHAS -->
+  <section class="card fechas-container">
+    <h3>📅 Próximas Fechas</h3>
+
+    <div *ngFor="let caso of fechas" 
+         class="fecha-item"
+         [ngClass]="{
+           'urgente': getDiasRestantes(caso.fechaLimite) <= 3,
+           'advertencia': getDiasRestantes(caso.fechaLimite) > 3 && getDiasRestantes(caso.fechaLimite) <= 7
+         }">
+
+      <p><strong>{{ caso.titulo }}</strong></p>
+
+      <p>
+        👤 Cliente: 
+        {{ caso.cliente?.nombres }} {{ caso.cliente?.apellidos }}
+      </p>
+
+      <p>
+        📅 Fecha límite: {{ caso.fechaLimite | date:'dd/MM/yyyy' }}
+      </p>
+
+      <p>
+        ⏳ {{ getDiasRestantes(caso.fechaLimite) }} días restantes
+      </p>
+
+      <p *ngIf="getDiasRestantes(caso.fechaLimite) <= 3" class="badge urgente-badge">
+        🔴 URGENTE
+      </p>
+
+      <p *ngIf="getDiasRestantes(caso.fechaLimite) > 3 && getDiasRestantes(caso.fechaLimite) <= 7" class="badge advertencia-badge">
+        🟡 POR VENCER
+      </p>
+
+      <button class="btn-descripcion" (click)="verDescripcion(caso)">
+        Ver descripción
+      </button>
+      
+
+    </div>
+  </section>
+
+  <!-- 🔥 MODAL ÚNICO -->
+  <div class="overlay" *ngIf="mostrarModal">
+
+    <div class="popup" (click)="$event.stopPropagation()">
+
+      <span class="close" (click)="cerrarModal()">✖</span>
+
+      <h3>Descripción del Caso</h3>
+
+      <div class="contenido-modal">
+        {{ descripcionSeleccionada }}
+      </div>
+ <div class="modal-footer">
+
+      <button
+        class="btn-cerrar"
+        (click)="cerrarModal()">
+
+        Cerrar
+
+      </button>
+
+    </div>
+    </div>
+
+  </div>
+  
+  
+  
+  
+  <!-- 🔥 NUEVO MODAL DE NOTAS (AQUÍ 👇) -->
+<!-- 🔥 MODAL NOTAS -->
+<div class="overlay" *ngIf="modalNota">
+
+  <div class="popup" (click)="$event.stopPropagation()">
+
+    <span class="close" (click)="cerrarNota()">✖</span>
+
+    <h3>📝 Nota del caso</h3>
+
+    <p>
+      <strong>
+        {{ casoSeleccionado?.title }}
+      </strong>
+    </p>
+
+    <textarea
+      #notaInput
+      [value]="notaTexto">
+
+    </textarea>
+
+    <button
+      class="btn-descripcion"
+      (click)="guardarNota(notaInput.value)">
+
+      Guardar
+
+    </button>
+
+  </div>
+
+</div>
+
+<!-- 🔥 MODAL EVENTO -->
+<div
+  class="modal-overlay"
+  *ngIf="mostrarModalEvento">
+
+  <div class="modal-evento">
+
+    <h2>Nuevo Evento</h2>
+
+    <!-- TITULO -->
+    <label>Título</label>
+
+    <input
+      type="text"
+      [(ngModel)]="nuevoEvento.titulo">
+
+    <!-- DESCRIPCIÓN -->
+    <label>Descripción</label>
+
+    <textarea
+      rows="4"
+      [(ngModel)]="nuevoEvento.descripcion">
+
+    </textarea>
+
+    <!-- FECHA -->
+    <label>Fecha</label>
+
+    <input
+      type="date"
+      [(ngModel)]="nuevoEvento.fecha">
+
+    <!-- HORA -->
+    <label>Hora</label>
+
+    <input
+      type="time"
+      [(ngModel)]="nuevoEvento.hora">
+
+    <!-- TIPO -->
+    <label>Tipo</label>
+
+    <select
+      [(ngModel)]="nuevoEvento.tipo">
+
+      <option value="AUDIENCIA">
+        Audiencia
+      </option>
+
+      <option value="REUNION">
+        Reunión
+      </option>
+
+      <option value="VENCIMIENTO">
+        Vencimiento
+      </option>
+
+    </select>
+
+    <!-- BOTONES -->
+    <div class="modal-buttons">
+
+      <button
+        class="btn-cancelar"
+        (click)="cerrarModalEvento()">
+
+        Cancelar
+
+      </button>
+      
+
+      <button
+        class="btn-guardar"
+        (click)="guardarEvento()">
+
+        Guardar
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

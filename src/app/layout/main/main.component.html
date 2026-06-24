@@ -1,0 +1,190 @@
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <button class="sidebar-btn" (click)="irHome()">
+      <span class="material-icons">home</span>
+      <span class="tooltip-text">Inicio</span>
+    </button>
+
+    <button class="sidebar-btn" (click)="irACasos('EN_PROCESO')">
+      <span class="material-icons">gavel</span>
+      <span class="tooltip-text">Casos_EN_PROCESO</span>
+    </button>
+
+    <button class="sidebar-btn" (click)="irAClientes()">
+      <span class="material-icons">people</span>
+      <span class="tooltip-text">Clientes</span>
+    </button>
+
+    <button class="sidebar-btn finalizados-btn" (click)="irACasos('FINALIZADO')">
+      <span class="material-icons">task_alt</span>
+      <span class="tooltip-text">Finalizados</span>
+    </button>
+
+
+
+  </aside>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <div class="main-content">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+
+      <div class="logo">
+        SYSTEM LUX 2.0
+      </div>
+
+      <div class="topbar-right">
+
+        <!-- EVENTOS -->
+        <div class="dropdown-wrapper">
+
+          <button
+            class="icon-btn"
+            (click)="toggleEventos(); $event.stopPropagation()">
+
+            <span class="material-icons">event</span>
+
+            <span
+              class="badge"
+              *ngIf="eventos.length > 0">
+
+              {{ eventos.length }}
+
+            </span>
+
+          </button>
+
+          <!-- DROPDOWN EVENTOS -->
+          <div
+            *ngIf="mostrarEventos"
+            class="notif-dropdown"
+            (click)="$event.stopPropagation()">
+
+            <div *ngIf="eventos.length === 0">
+              No hay eventos
+            </div>
+
+            <div
+              *ngFor="let evento of eventos"
+              class="notif-item evento-item">
+
+              <strong>{{ evento.titulo }}</strong>
+
+              <br>
+
+              📅 {{ evento.fecha | date:'mediumDate' }}
+
+              <br>
+
+              🕒 {{ evento.hora }}
+
+              <br>
+
+              🏷️ {{ evento.tipo }}
+
+              <br><br>
+
+              <button
+                class="btn-eliminar"
+                (click)="eliminarEvento({
+                  tipo: 'evento',
+                  data: evento
+                })">
+
+                Eliminar
+
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- NOTIFICACIONES -->
+        <div class="dropdown-wrapper">
+
+          <button
+            class="icon-btn"
+            (click)="toggleNotificaciones(); $event.stopPropagation()">
+
+            <span class="material-icons">
+              notifications
+            </span>
+
+            <span
+              class="badge"
+              *ngIf="notificaciones.length > 0">
+
+              {{ notificaciones.length }}
+
+            </span>
+
+          </button>
+
+          <!-- DROPDOWN NOTIFICACIONES -->
+          <div
+            *ngIf="mostrarNotificaciones"
+            class="notif-dropdown"
+            (click)="$event.stopPropagation()">
+
+            <div *ngIf="notificaciones.length === 0">
+              No hay notificaciones
+            </div>
+
+            <div
+              *ngFor="let caso of notificaciones"
+              class="notif-item"
+              [ngClass]="caso.tipo"
+              (click)="abrirCaso(caso.id)">
+
+              <strong>{{ caso.titulo }}</strong>
+
+              <br>
+
+              👤 {{ caso.cliente?.nombres }}
+              {{ caso.cliente?.apellidos }}
+
+              <br>
+
+              {{ caso.mensaje }}
+
+              <br>
+
+              📅 {{ caso.fechaLimite | date:'mediumDate' }}
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- CERRAR SESION -->
+        <button
+          class="btn-logout"
+          (click)="logout()">
+
+          Cerrar Sesión
+
+        </button>
+
+      </div>
+
+    </header>
+
+    <!-- CONTENIDO -->
+    <main
+      class="contenido-dinamico"
+      (click)="cerrarMenu($event)">
+
+      <router-outlet></router-outlet>
+
+    </main>
+
+  </div>
+
+</div>

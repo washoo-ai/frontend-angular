@@ -1,0 +1,33 @@
+<div class="login-wrapper">
+  <div class="login-container">
+    <h2>Iniciar Sesión</h2>
+
+    <form (ngSubmit)="onLogin()">
+      <div class="input-group">
+        <input
+          type="text"
+          placeholder="Usuario"
+          [(ngModel)]="loginData.username"
+          name="username"
+          required
+        />
+      </div>
+
+      <div class="input-group">
+        <input
+          type="password"
+          placeholder="Contraseña"
+          [(ngModel)]="loginData.password"
+          name="password"
+          required
+        />
+      </div>
+
+      <button type="submit" class="btn-login">Ingresar</button>
+
+      <p *ngIf="errorMessage" class="error">
+        {{ errorMessage }}
+      </p>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,75 @@
+<div class="form-container">
+
+  <h2 class="titulo-form">
+  <span class="material-icons">
+    {{ caso.id ? 'edit' : 'add_circle' }}
+  </span>
+
+  {{ caso.id ? 'Editar Caso' : 'Crear Caso' }}
+</h2>
+
+  <form (ngSubmit)="guardar()">
+
+    <label>Título</label>
+    <input type="text" [(ngModel)]="caso.titulo" name="titulo" required />
+
+    <label>Descripción</label>
+    <textarea [(ngModel)]="caso.descripcion" name="descripcion" required></textarea>
+
+    <label>Estado</label>
+    <select [(ngModel)]="caso.estado" name="estado" required>
+      <option value="">Seleccione...</option>
+      
+      <option>EN_PROCESO</option>
+      <option>FINALIZADO</option>
+    </select>
+
+    <label>Fecha Inicio</label>
+    <input type="date" [(ngModel)]="caso.fechaInicio" name="fechaInicio" required />
+
+    <label>Fecha Límite</label>
+    <input type="date" [(ngModel)]="caso.fechaLimite" name="fechaLimite" required />
+
+   <label>Cliente</label>
+<div class="cliente-search">
+
+  <input
+  type="text"
+  placeholder="Buscar cliente por nombre o cédula..."
+  [(ngModel)]="textoCliente"
+  [ngModelOptions]="{standalone: true}"
+  (input)="filtrarClientes()">
+
+  <div
+    class="clientes-resultados"
+    *ngIf="clientesFiltrados.length > 0">
+
+    <div
+      class="cliente-item"
+      *ngFor="let c of clientesFiltrados"
+      (click)="seleccionarCliente(c)">
+
+      <strong>
+        {{ c.nombres }} {{ c.apellidos }}
+      </strong>
+
+      <br>
+
+      <small>
+        CI: {{ c.cedula }}
+      </small>
+
+    </div>
+
+  </div>
+
+</div>
+    <div class="buttons">
+      <button type="submit">Guardar</button>
+      <button type="button" class="cancel" (click)="cancelar()">Cancelar</button>
+      
+    </div>
+
+  </form>
+
+</div>

@@ -1,0 +1,123 @@
+<div class="contenedor" *ngIf="caso">
+
+  <div class="card-caso" id="contenidoPDF">
+
+    <!-- HEADER -->
+    <div class="header-caso">
+
+      <div>
+
+        <h2>{{ caso.titulo }}</h2>
+
+        <p class="cliente">
+          👤
+          {{ caso.cliente?.nombres }}
+          {{ caso.cliente?.apellidos }}
+        </p>
+
+      </div>
+
+      <!-- ESTADO VISUAL -->
+      <div
+        class="estado-badge"
+        [ngClass]="{
+          'pendiente': caso.estado === 'PENDIENTE',
+          'proceso': caso.estado === 'EN_PROCESO',
+          'finalizado': caso.estado === 'FINALIZADO'
+        }">
+
+        {{ caso.estado }}
+
+      </div>
+
+    </div>
+
+    <!-- INFORMACIÓN -->
+    <div class="info-grid">
+
+      <div class="info-item">
+
+        <span class="label">Fecha límite</span>
+
+
+        <input
+        type="date"
+        class="input-fecha"
+        [(ngModel)]="caso.fechaLimite">
+
+      </div>
+
+      <div class="info-item">
+
+        <span class="label">Estado actual</span>
+
+        <span class="value">
+          {{ caso.estado }}
+        </span>
+
+      </div>
+
+    </div>
+
+    <!-- CAMBIAR ESTADO -->
+    <div class="campo">
+
+      <label>Cambiar Estado</label>
+
+      <select [(ngModel)]="caso.estado">
+
+       <!--  <option value="PENDIENTE">
+          Pendiente
+        </option>-->
+
+        <option value="EN_PROCESO">
+          En proceso
+        </option>
+
+        <option value="FINALIZADO">
+          Finalizado
+        </option>
+
+      </select>
+
+    </div>
+
+    <!-- DESCRIPCIÓN EDITABLE -->
+    <div class="campo">
+
+      <label>Descripción del Caso</label>
+
+      <textarea
+        rows="10"
+        [(ngModel)]="caso.descripcion">
+
+      </textarea>
+
+    </div>
+
+    <!-- BOTÓN -->
+     
+   <div class="buttons">
+
+  <button
+    class="btn-pdf"
+    (click)="descargarPDF()">
+
+    Descargar PDF
+
+  </button>
+
+  <button
+    class="btn-guardar"
+    (click)="guardarCambios()">
+
+    Guardar Cambios
+
+  </button>
+
+</div>
+
+    </div>
+
+  </div>
+

@@ -1,0 +1,42 @@
+<div class="form-container">
+
+  <h2>{{ id ? 'Editar Cliente' : 'Nuevo Cliente' }}</h2>
+
+  <form (ngSubmit)="guardar()">
+
+    <label>Cédula</label>
+    <input type="text" [(ngModel)]="cliente.cedula" name="cedula" required required maxlength="10" />
+
+    <label>Nombres</label>
+    <input type="text" [(ngModel)]="cliente.nombres" name="nombres" required />
+
+    <label>Apellidos</label>
+    <input type="text" [(ngModel)]="cliente.apellidos" name="apellidos" required />
+
+    <label>Edad</label>
+    <input type="number" [(ngModel)]="cliente.edad" name="edad" required />
+
+    <label>Teléfono</label>
+    <input type="text" [(ngModel)]="cliente.telefono" name="telefono" required maxlength="13"/>
+
+
+    <label>Estado Civil</label>
+    <select [(ngModel)]="cliente.estadoCivil" name="estadoCivil" required>
+      <option value="">Seleccione...</option>
+      <option>Soltero</option>
+      <option>Casado</option>
+      <option>Divorciado</option>
+      <option>Viudo</option>
+    </select>
+
+    <label>Observaciones</label>
+    <textarea [(ngModel)]="cliente.observaciones" name="observaciones"></textarea>
+
+    <div class="buttons">
+      <button type="submit">Guardar</button>
+      <button type="button" class="cancel" (click)="cancelar()">Cancelar</button>
+    </div>
+
+  </form>
+
+</div>

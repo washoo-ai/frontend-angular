@@ -1,0 +1,84 @@
+<div class="container">
+
+  <div class="header">
+    <h2>Casos</h2>
+   
+   
+ <div class="search-box">
+  <span class="material-icons">search</span>
+
+  <input
+    type="text"
+    placeholder="Buscar casos..."
+    [(ngModel)]="textoBusqueda"
+    (input)="filtrarCasos()"
+  />
+
+
+</div>
+    <button routerLink="/casos/nuevo">+ Nuevo Caso</button>
+  </div>
+    
+  <table>
+    <thead>
+      <tr>
+        <th>Título</th>
+        <th>Descripcion</th>
+        <th>Estado</th>
+        <th>Cliente</th>
+        <th>Fecha Inicio</th>
+        <th>Fecha Límite</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+
+      <tbody>
+        <tr *ngFor="let c of casosFiltrados">
+          
+          <td>{{ c.titulo }}</td>
+
+          <!-- 🔥 DESCRIPCIÓN CON BOTÓN -->
+          <td>
+            {{ c.descripcion | slice:0:50 }}...
+
+            <button 
+              class="ver-mas"
+              *ngIf="c.descripcion.length > 50"
+              (click)="abrirModal(c.descripcion)">
+              Ver más
+            </button>
+          </td>
+
+          <td>{{ c.estado }}</td>
+          <td>{{ c.cliente.nombres }} {{ c.cliente.apellidos }}</td>
+          <td>{{ c.fechaInicio | date:'yyyy-MM-dd' }}</td>
+          <td>{{ c.fechaLimite | date:'yyyy-MM-dd' }}</td>
+
+          <td>
+            <button type="button" (click)="editar(c.id)">Editar</button>
+            <button class="delete" (click)="eliminar(c.id!)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  <!-- 🔥 MODAL -->
+<!-- MODAL EMERGENTE -->
+<div class="overlay" *ngIf="modalAbierto">
+
+  <div class="popup">
+
+    <!-- BOTÓN CERRAR -->
+    <span class="close" (click)="cerrarModal()">✖</span>
+
+    <h3>Descripción del caso</h3>
+
+    <div class="contenido-modal">
+      {{ descripcionSeleccionada }}
+    </div>
+
+  </div>
+
+</div>
+
+</div>
