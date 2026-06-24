@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 @Injectable({ providedIn: 'root' })
 export class AuthService {
 
-  private api = 'http://localhost:8080/api/auth';
+  private api = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 
