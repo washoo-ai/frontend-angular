@@ -17,7 +17,7 @@ import { environment } from '../../environments/environment.prod';
 export class EventoService {
 
   
-    private apiUrl = `${environment.apiUrl}/eventos`;
+    private apiUrl = `${environment.apiUrl}/api/eventos`;
 
   constructor(
     private http: HttpClient
