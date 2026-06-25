@@ -9,14 +9,15 @@ import { Observable } from 'rxjs';
 
 import { Evento }
 from '../models/evento.model';
+import { environment } from '../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EventoService {
 
-  private api =
-    'http://localhost:8080/api/eventos';
+  
+    private apiUrl = `${environment.apiUrl}/eventos`;
 
   constructor(
     private http: HttpClient

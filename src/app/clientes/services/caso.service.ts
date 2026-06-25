@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { Caso } from 'models/caso.model';
+import { environment } from '../../../environments/environment.prod';
 
 
 @Injectable({
@@ -12,7 +13,7 @@ export class CasoService {
     throw new Error('Method not implemented.');
   }
 
-  private apiUrl = 'http://localhost:8080/api/casos';
+  private apiUrl = `${environment.apiUrl}/casos`;
   
 
   constructor(private http: HttpClient) {}
@@ -70,11 +71,11 @@ listar(): Observable<Caso[]> {
 }
 
   resumen() {
-  return this.http.get<any>('http://localhost:8080/api/casos/resumen');
+  return this.http.get<any>(`${environment.apiUrl}/casos/resumen`);
 }
 
 obtenerPorEstado(estado: string) {
-  return this.http.get<any[]>(`http://localhost:8080/api/casos/estado/${estado}`);
+ return this.http.get<any[]>(`${environment.apiUrl}/casos/estado/${estado}`);
 }
 
 
