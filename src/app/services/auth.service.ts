@@ -7,17 +7,15 @@ import { FormsModule } from '@angular/forms';
 @Injectable({ providedIn: 'root' })
 export class AuthService {
 
-  private api = environment.apiUrl;
+  private api = environment.apiUrl + '/auth';
 
   constructor(private http: HttpClient) {}
 
-  login(username: string, password: string) {
-    return this.http.post(`${this.api}/login`,
-      { username, password },
-      { responseType: 'text' } // ⬅️ MUY IMPORTANTE
+  login(data: any) {
+    return this.http.post(
+      `${this.api}/login`,
+      data,
+      { responseType: 'text' }
     );
   }
- saveToken(token: string) {
-  localStorage.setItem('token', token);
-}
 }
