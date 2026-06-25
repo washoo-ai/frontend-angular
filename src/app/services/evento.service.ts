@@ -9,16 +9,15 @@ import { Observable } from 'rxjs';
 
 import { Evento }
 from '../models/evento.model';
-import { environment } from '../../environments/environment.prod';
+import { environment } from '../../environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class EventoService {
 
-  
-    private apiUrl = `${environment.apiUrl}/api/eventos`;
-
+  private api = `${environment.apiUrl}/eventos`;
   constructor(
     private http: HttpClient
   ) {}
